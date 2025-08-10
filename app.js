@@ -10,8 +10,7 @@ const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const multer = require("multer");
 const { authRouter } = require("./routes/authRouter");
-const dbPath =
-  "mongodb+srv://mayank:Patel%403125@completecoding.5id4l6l.mongodb.net/Book-Store?retryWrites=true&w=majority&appName=CompleteCoding";
+const dbPath = process.env.MONGODB_URI;
 
 app.set("view engine", "ejs");
 app.set("views", path.join(rootDir, "views"));

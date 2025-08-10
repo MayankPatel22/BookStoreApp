@@ -1,0 +1,112 @@
+<script src="https://cdn.tailwindcss.com"></script>
+
+<header
+  class="bg-gradient-to-r from-red-600 via-red-500 to-pink-500 text-white shadow-lg"
+>
+  <nav class="container mx-auto flex justify-between items-center py-3 px-4">
+    <!-- Logo / Title -->
+    <a href="/" class="flex items-center space-x-2">
+      <span
+        class="text-2xl font-extrabold tracking-wide hover:scale-105 transition-transform duration-300"
+      >
+        📚 BookStore
+      </span>
+    </a>
+
+    <!-- Left Nav Items -->
+    <ul class="hidden md:flex space-x-4 font-medium">
+      <li>
+        <a
+          href="/"
+          onclick="location.reload()"
+          class="<%= currentPage === 'index' ? 'bg-red-400/40' : 'hover:bg-red-400/40' %> py-2 px-4 rounded-lg transition-all duration-300"
+          >Books</a
+        >
+      </li>
+
+      <% if (isLoggedIn) { %> <% if(user && user.userType === 'guest') { %>
+      <li>
+        <a
+          href="/book-list"
+          class="<%= currentPage === 'book-list' ? 'bg-red-400/40' : 'hover:bg-red-400/40' %> py-2 px-4 rounded-lg transition-all duration-300"
+          >Book-List</a
+        >
+      </li>
+      <li>
+        <a
+          href="/favourite"
+          class="<%= currentPage === 'favourite' ? 'bg-red-400/40' : 'hover:bg-red-400/40' %> py-2 px-4 rounded-lg transition-all duration-300"
+          >Favourites</a
+        >
+      </li>
+      <li>
+        <a
+          href="/booked"
+          class="<%= currentPage === 'booked' ? 'bg-red-400/40' : 'hover:bg-red-400/40' %> py-2 px-4 rounded-lg transition-all duration-300"
+          >Ordered</a
+        >
+      </li>
+      <% } %> <% if(user && user.userType === 'host') { %>
+      <li>
+        <a
+          href="/host/host-book"
+          class="<%= currentPage === 'host-books' ? 'bg-red-400/40' : 'hover:bg-red-400/40' %> py-2 px-4 rounded-lg transition-all duration-300"
+          >Host Books</a
+        >
+      </li>
+      <li>
+        <a
+          href="/host/add-book"
+          class="<%= currentPage === 'add-book' ? 'bg-red-400/40' : 'hover:bg-red-400/40' %> py-2 px-4 rounded-lg transition-all duration-300"
+          >Add Books</a
+        >
+      </li>
+      <% } %> <% } %>
+    </ul>
+
+    <!-- Right-side Auth Items -->
+    <div class="flex items-center space-x-3">
+      <% if (!isLoggedIn) { %>
+      <a
+        href="/login"
+        class="bg-white text-red-600 font-semibold py-2 px-4 rounded-lg hover:bg-gray-100 transition duration-300"
+        >Login</a
+      >
+      <a
+        href="/signup"
+        class="bg-yellow-400 text-gray-900 font-semibold py-2 px-4 rounded-lg hover:bg-yellow-300 transition duration-300"
+        >Sign-Up</a
+      >
+      <% } else { %>
+      <form action="/logout" method="post">
+        <button
+          type="submit"
+          class="bg-white text-red-600 font-semibold py-2 px-4 rounded-lg hover:bg-gray-100 transition duration-300"
+        >
+          Logout
+        </button>
+      </form>
+      <% } %>
+    </div>
+
+    <!-- Mobile Menu Icon -->
+    <button
+      class="md:hidden p-2 rounded hover:bg-red-400/40 transition duration-300"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M4 6h16M4 12h16M4 18h16"
+        />
+      </svg>
+    </button>
+  </nav>
+</header>
